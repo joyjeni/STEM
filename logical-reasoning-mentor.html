@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade 2 Logical Reasoning Mentor - Olympiad Prep</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 15px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+        }
+
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+            justify-content: center;
+        }
+
+        .menu-btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .menu-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .menu-btn.active {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+
+        .content-area {
+            min-height: 500px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+
+        .topic-section {
+            display: none;
+        }
+
+        .topic-section.active {
+            display: block;
+        }
+
+        .question-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .question-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .question-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .question-text {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .visual-area {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            border: 3px dashed #ddd;
+        }
+
+        .pattern-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .pattern-item {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            border: 3px solid #667eea;
+            border-radius: 10px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        .pattern-item:hover {
+            transform: scale(1.1);
+            background: #f0f4ff;
+        }
+
+        .pattern-item.highlight {
+            background: #ffd700;
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .options-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .option-btn {
+            padding: 15px;
+            background: white;
+            border: 3px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .option-btn:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+            transform: translateY(-3px);
+        }
+
+        .option-btn.correct {
+            background: #4caf50;
+            color: white;
+            border-color: #4caf50;
+        }
+
+        .option-btn.wrong {
+            background: #f44336;
+            color: white;
+            border-color: #f44336;
+        }
+
+        .hint-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .hint-box.show {
+            display: block;
+        }
+
+        .hint-box h3 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+
+        .step-by-step {
+            background: #e7f5ff;
+            border-left: 5px solid #0066cc;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .step {
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: #0066cc;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+        }
+
+        .control-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-hint {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .btn-solve {
+            background: #4caf50;
+            color: white;
+        }
+
+        .btn-next {
+            background: #2196f3;
+            color: white;
+        }
+
+        .btn-reset {
+            background: #9c27b0;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .score-board {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        .score {
+            font-size: 1.5em;
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .stars {
+            font-size: 2em;
+            color: gold;
+            margin-top: 5px;
+        }
+
+        .shape {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
+        }
+
+        .circle {
+            background: #ff6b6b;
+            border-radius: 50%;
+        }
+
+        .square {
+            background: #4ecdc4;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 60px solid #95e77e;
+        }
+
+        .hexagon {
+            width: 60px;
+            height: 33px;
+            background: #ffe66d;
+            position: relative;
+            margin: 20px auto;
+        }
+
+        .hexagon:before,
+        .hexagon:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+        }
+
+        .hexagon:before {
+            bottom: 100%;
+            border-bottom: 17px solid #ffe66d;
+        }
+
+        .hexagon:after {
+            top: 100%;
+            border-top: 17px solid #ffe66d;
+        }
+
+        .pentagon {
+            position: relative;
+            width: 54px;
+            box-sizing: content-box;
+            border-width: 50px 18px 0;
+            border-style: solid;
+            border-color: #a8dadc transparent;
+            margin: 20px auto;
+        }
+
+        .pentagon:before {
+            content: "";
+            position: absolute;
+            height: 0;
+            width: 0;
+            top: -85px;
+            left: -18px;
+            border-width: 0 45px 35px;
+            border-style: solid;
+            border-color: transparent transparent #a8dadc;
+        }
+
+        .activity-area {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .drag-item {
+            display: inline-block;
+            padding: 10px 20px;
+            background: white;
+            border: 2px solid #333;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: move;
+            transition: all 0.3s;
+        }
+
+        .drag-item:hover {
+            transform: scale(1.1);
+        }
+
+        .drop-zone {
+            min-height: 80px;
+            border: 3px dashed #999;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            background: rgba(255,255,255,0.5);
+            text-align: center;
+        }
+
+        .drop-zone.active {
+            background: rgba(102, 126, 234, 0.2);
+            border-color: #667eea;
+        }
+
+        .feedback {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+            display: none;
+            z-index: 1000;
+        }
+
+        .feedback.success {
+            background: #4caf50;
+            display: block;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        .feedback.error {
+            background: #f44336;
+            display: block;
+            animation: shake 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { bottom: -100px; }
+            to { bottom: 20px; }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(-50%) rotate(0deg); }
+            25% { transform: translateX(-50%) rotate(-5deg); }
+            75% { transform: translateX(-50%) rotate(5deg); }
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4caf50, #8bc34a);
+            width: 0%;
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .menu {
+                flex-direction: column;
+            }
+            
+            .score-board {
+                position: static;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="score-board">
+        <div>Score: <span class="score" id="score">0</span></div>
+        <div class="stars" id="stars">⭐</div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Logical Reasoning Mentor 🏆</h1>
+            <p>Master Olympiad Questions - Grade 2</p>
+        </div>
+
+        <div class="menu">
+            <button class="menu-btn active" onclick="showSection('patterns')">🔢 Number Patterns</button>
+            <button class="menu-btn" onclick="showSection('shapes')">🔷 Shape Patterns</button>
+            <button class="menu-btn" onclick="showSection('coding')">🔤 Coding-Decoding</button>
+            <button class="menu-btn" onclick="showSection('ranking')">📊 Ranking & Order</button>
+            <button class="menu-btn" onclick="showSection('oddone')">❓ Odd One Out</button>
+            <button class="menu-btn" onclick="showSection('counting')">🔢 Counting Figures</button>
+            <button class="menu-btn" onclick="showSection('embedded')">🔍 Embedded Figures</button>
+            <button class="menu-btn" onclick="showSection('practice')">✏️ Practice Test</button>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress">0%</div>
+        </div>
+
+        <div class="content-area">
+            <!-- Number Patterns Section -->
+            <div class="topic-section active" id="patterns">
+                <div class="question-card">
+                    <div class="question-header">
+                        <div class="question-number">1</div>
+                        <h2>Number Pattern Recognition</h2>
+                    </div>
+                    <div class="question-text">
+                        Let's learn to find patterns in numbers! Look at this sequence:
+                    </div>
+                    <div class="visual-area">
+                        <div class="pattern-container" id="number-pattern">
+                            <div class="pattern-item">2</div>
+                            <div class="pattern-item">4</div>
+                            <div class="pattern-item">6</div>
+                            <div class="pattern-item">8</div>
+                            <div class="pattern-item highlight">?</div>
+                        </div>
+                    </div>
+                    <div class="step-by-step">
+                        <h3>Let's solve it step by step!</h3>
+                        <div class="step">
+                            <span class="step-number">1</span>
+                            Look at the difference between numbers: 4-2=2, 6-4=2, 8-6=2
+                        </div>
+                        <div class="step">
+                            <span class="step-number">2</span>
+                            Pattern found! We're adding 2 each time
+                        </div>
+                        <div class="step">
+                            <span class="step-number">3</span>
+                            So the next number is: 8 + 2 = 10
+                        </div>
+                    </div>
+                    <div class="options-container">
+                        <button class="option-btn" onclick="checkAnswer(this, false)">9</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true)">10</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">11</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">12</button>
+                    </div>
+                    <div class="hint-box" id="hint1">
+                        <h3>💡 Hint:</h3>
+                        <p>Count by 2s! Start from 2 and keep adding 2 each time. It's like counting pairs!</p>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="btn btn-hint" onclick="showHint('hint1')">💡 Get Hint</button>
+                        <button class="btn btn-solve" onclick="solveProblem('patterns')">🎯 Show Solution</button>
+                        <button class="btn btn-next" onclick="nextQuestion('patterns')">➡️ Next Question</button>
+                    </div>
+                </div>
+
+                <div class="activity-area">
+                    <h3>🎮 Interactive Activity: Create Your Own Pattern!</h3>
+                    <p>Drag the numbers to create a pattern that adds 3 each time:</p>
+                    <div class="drag-zone">
+                        <span class="drag-item" draggable="true">3</span>
+                        <span class="drag-item" draggable="true">6</span>
+                        <span class="drag-item" draggable="true">9</span>
+                        <span class="drag-item" draggable="true">12</span>
+                        <span class="drag-item" draggable="true">15</span>
+                    </div>
+                    <div class="drop-zone" id="pattern-drop">
+                        Drop numbers here in order...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shape Patterns Section -->
+            <div class="topic-section" id="shapes">
+                <div class="question-card">
+                    <div class="question-header">
+                        <div class="question-number">2</div>
+                        <h2>Shape Pattern Recognition</h2>
+                    </div>
+                    <div class="question-text">
+                        Can you find the pattern in these shapes? What comes next?
+                    </div>
+                    <div class="visual-area">
+                        <div class="pattern-container">
+                            <div class="pattern-item">
+                                <div class="shape circle"></div>
+                            </div>
+                            <div class="pattern-item">
+                                <div class="shape square"></div>
+                            </div>
+                            <div class="pattern-item">
+                                <div class="shape triangle"></div>
+                            </div>
+                            <div class="pattern-item">
+                                <div class="shape circle"></div>
+                            </div>
+                            <div class="pattern-item">
+                                <div class="shape square"></div>
+                            </div>
+                            <div class="pattern-item highlight">?</div>
+                        </div>
+                    </div>
+                    <div class="step-by-step">
+                        <h3>Let's find the pattern!</h3>
+                        <div class="step">
+                            <span class="step-number">1</span>
+                            Observe the sequence: Circle → Square → Triangle → Circle → Square
+                        </div>
+                        <div class="step">
+                            <span class="step-number">2</span>
+                            The pattern repeats every 3 shapes: Circle, Square, Triangle
+                        </div>
+                        <div class="step">
+                            <span class="step-number">3</span>
+                            After Square comes Triangle!
+                        </div>
+                    </div>
+                    <div class="options-container">
+                        <button class="option-btn" onclick="checkAnswer(this, false)">
+                            <div class="shape circle" style="width:30px; height:30px;"></div> Circle
+                        </button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">
+                            <div class="shape square" style="width:30px; height:30px;"></div> Square
+                        </button>
+                        <button class="option-btn" onclick="checkAnswer(this, true)">
+                            <div class="shape triangle" style="width:30px; height:30px;"></div> Triangle
+                        </button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">
+                            <div class="shape hexagon" style="width:30px; height:15px;"></div> Hexagon
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coding-Decoding Section -->
+            <div class="topic-section" id="coding">
+                <div class="question-card">
+                    <div class="question-header">
+                        <div class="question-number">3</div>
+                        <h2>Coding-Decoding Fun!</h2>
+                    </div>
+                    <div class="question-text">
+                        If 🍎 is called 🍓, 🍓 is called 🍇, and 🍇 is called 🍌, 
+                        then which of these is green in color?
+                    </div>
+                    <div class="visual-area">
+                        <div style="font-size: 3em;">
+                            🍎 → 🍓<br>
+                            🍓 → 🍇<br>
+                            🍇 → 🍌
+                        </div>
+                    </div>
+                    <div class="step-by-step">
+                        <h3>Let's decode this puzzle!</h3>
+                        <div class="step">
+                            <span class="step-number">1</span>
+                            In real life, grapes (🍇) are green
+                        </div>
+                        <div class="step">
+                            <span class="step-number">2</span>
+                            But in our code, grapes (🍇) are called banana (🍌)
+                        </div>
+                        <div class="step">
+                            <span class="step-number">3</span>
+                            So the answer is banana (🍌) because that's what we call grapes!
+                        </div>
+                    </div>
+                    <div class="options-container">
+                        <button class="option-btn" onclick="checkAnswer(this, false)">🍎 Apple</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">🍓 Strawberry</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">🍇 Grapes</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true)">🍌 Banana</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ranking & Order Section -->
+            <div class="topic-section" id="ranking">
+                <div class="question-card">
+                    <div class="question-header">
+                        <div class="question-number">4</div>
+                        <h2>Ranking & Position</h2>
+                    </div>
+                    <div class="question-text">
+                        In a family, Shreya is taller than Amit, Amit is taller than Rita, 
+                        Rita is shorter than Raj, and Raj is shorter than Amit. Who is the shortest?
+                    </div>
+                    <div class="visual-area">
+                        <div style="display: flex; justify-content: center; align-items: flex-end; gap: 20px;">
+                            <div style="text-align: center;">
+                                <div style="height: 150px; width: 40px; background: #ff6b6b;"></div>
+                                <p>Shreya</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="height: 120px; width: 40px; background: #4ecdc4;"></div>
+                                <p>Amit</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="height: 100px; width: 40px; background: #ffe66d;"></div>
+                                <p>Raj</p>
+                            </div>
+                            <div style="text-align: center;">
+                                <div style="height: 80px; width: 40px; background: #95e77e;"></div>
+                                <p>Rita</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step-by-step">
+                        <h3>Let's arrange them by height!</h3>
+                        <div class="step">
+                            <span class="step-number">1</span>
+                            Shreya > Amit (Shreya is taller)
+                        </div>
+                        <div class="step">
+                            <span class="step-number">2</span>
+                            Amit > Rita (Amit is taller)
+                        </div>
+                        <div class="step">
+                            <span class="step-number">3</span>
+                            Amit > Raj > Rita (Raj is between Amit and Rita)
+                        </div>
+                        <div class="step">
+                            <span class="step-number">4</span>
+                            Final order: Shreya > Amit > Raj > Rita (Rita is shortest!)
+                        </div>
+                    </div>
+                    <div class="options-container">
+                        <button class="option-btn" onclick="checkAnswer(this, true)">Rita</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">Raj</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">Amit</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">Shreya</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Odd One Out Section -->
+            <div class="topic-section" id="oddone">
+                <div class="question-card">
+                    <div class="question-header">
+                        <div class="question-number">5</div>
+                        <h2>Find the Odd One Out!</h2>
+                    </div>
+                    <div class="question-text">
+                        Which one doesn't belong in this group?
+                    </div>
+                    <div class="visual-area">
+                        <div style="display: flex; justify-content: center; gap: 30px; font-size: 4em;">
+                            <span title="Crocodile">🐊</span>
+                            <span title="Squirrel">🐿️</span>
+                            <span title="Cat">🐱</span>
+                            <span title="Dog">🐕</span>
+                        </div>
+                    </div>
+                    <div class="step-by-step">
+                        <h3>Think about what makes them similar or different!</h3>
+                        <div class="step">
+                            <span class="step-number">1</span>
+                            Look at each animal carefully
+                        </div>
+                        <div class="step">
+                            <span class="step-number">2</span>
+                            Squirrel, Cat, and Dog are pets or friendly animals
+                        </div>
+                        <div class="step">
+                            <span class="step-number">3</span>
+                            Crocodile is a wild reptile - it's different!
+                        </div>
+                    </div>
+                    <div class="options-container">
+                        <button class="option-btn" onclick="checkAnswer(this, true)">🐊 Crocodile</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">🐿️ Squirrel</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">🐱 Cat</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">🐕 Dog</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Counting Figures Section -->
+            <div class="topic-section" id="counting">
+                <div class="question-card">
+                    <div class="question-header">
+                        <div class="question-number">6</div>
+                        <h2>Count the Shapes!</h2>
+                    </div>
+                    <div class="question-text">
+                        How many triangles can you find in this figure?
+                    </div>
+                    <div class="visual-area">
+                        <svg width="300" height="200" viewBox="0 0 300 200">
+                            <!-- Main triangle -->
+                            <polygon points="150,20 50,180 250,180" 
+                                     fill="none" stroke="#667eea" stroke-width="3"/>
+                            <!-- Inner lines creating more triangles -->
+                            <line x1="150" y1="20" x2="150" y2="180" 
+                                  stroke="#667eea" stroke-width="2"/>
+                            <line x1="100" y1="100" x2="200" y2="100" 
+                                  stroke="#667eea" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="step-by-step">
+                        <h3>Let's count systematically!</h3>
+                        <div class="step">
+                            <span class="step-number">1</span>
+                            Count small triangles first: 4 small triangles
+                        </div>
+                        <div class="step">
+                            <span class="step-number">2</span>
+                            Count medium triangles: 2 medium triangles
+                        </div>
+                        <div class="step">
+                            <span class="step-number">3</span>
+                            Count the big triangle: 1 large triangle
+                        </div>
+                        <div class="step">
+                            <span class="step-number">4</span>
+                            Total: 4 + 2 + 1 = 7 triangles
+                        </div>
+                    </div>
+                    <div class="options-container">
+                        <button class="option-btn" onclick="checkAnswer(this, false)">5</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">6</button>
+                        <button class="option-btn" onclick="checkAnswer(this, true)">7</button>
+                        <button class="option-btn" onclick="checkAnswer(this, false)">8</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Embedded Figures Section -->
+            <div class="topic-section" id="embedded">
+                <div class="question-card">
+                    <div class="question-header">
+                        <div class="question-number">7</div>
+                        <h2>Find the Hidden Shape!</h2>
+                    </div>
+                    <div class="question-text">
+                        Can you find this shape hidden in the big figure?
+                    </div>
+                    <div class="visual-area">
+                        <div style="display: flex; justify-content: center; gap: 50px; align-items: center;">
+                            <div>
+                                <p>Find this:</p>
+                                <svg width="100" height="100">
+                                    <rect x="20" y="20" width="60" height="60" 
+                                          fill="none" stroke="#f44336" stroke-width="3"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <p>Inside here:</p>
+                                <svg width="150" height="150">
+                                    <rect x="10" y="10" width="130" height="130" 
+                                          fill="none" stroke="#333" stroke-width="2"/>
+                                    <line x1="10" y1="75" x2="140" y2="75" 
+                                          stroke="#333" stroke-width="2"/>
+                                    <line x1="75" y1="10" x2="75" y2="140" 
+                                          stroke="#333" stroke-width="2"/>
+                                    <rect x="10" y="10" width="65" height="65" 
+                                          fill="none" stroke="#f44336" stroke-width="3" 
+                                          stroke-dasharray="5,5" opacity="0.7"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="control-buttons">
+                        <button class="btn btn-solve" onclick="highlightEmbedded()">✨ Show Hidden Shape</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Practice Test Section -->
+            <div class="topic-section" id="practice">
+                <div class="question-card">
+                    <div class="question-header">
+                        <div class="question-number">🏆</div>
+                        <h2>Olympiad Practice Test</h2>
+                    </div>
+                    <div class="question-text">
+                        <h3>Ready for a challenge? Let's test your skills!</h3>
+                    </div>
+                    <div id="practice-questions">
+                        <!-- Practice questions will be loaded dynamically -->
+                    </div>
+                    <div class="control-buttons">
+                        <button class="btn btn-next" onclick="loadPracticeQuestion()">Start Practice Test</button>
+                        <button class="btn btn-reset" onclick="resetProgress()">Reset Progress</button>
+                    </div>
+                </div>
+
+                <div class="activity-area">
+                    <h3>📊 Your Performance Summary</h3>
+                    <div id="performance-summary">
+                        <p>Complete the practice test to see your results!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feedback" id="feedback"></div>
+    </div>
+
+    <script>
+        let score = 0;
+        let currentQuestion = 0;
+        let totalQuestions = 0;
+        let practiceQuestions = [];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDragAndDrop();
+            loadPracticeQuestions();
+            updateProgress();
+        });
+
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.topic-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update menu buttons
+            document.querySelectorAll('.menu-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        function checkAnswer(button, isCorrect) {
+            // Disable all options
+            button.parentElement.querySelectorAll('.option-btn').forEach(btn => {
+                btn.disabled = true;
+            });
+            
+            if (isCorrect) {
+                button.classList.add('correct');
+                showFeedback('🎉 Excellent! You got it right!', 'success');
+                updateScore(10);
+                updateProgress();
+            } else {
+                button.classList.add('wrong');
+                showFeedback('Try again! Think carefully...', 'error');
+            }
+        }
+
+        function showHint(hintId) {
+            const hintBox = document.getElementById(hintId);
+            hintBox.classList.add('show');
+        }
+
+        function solveProblem(section) {
+            // Highlight correct answer
+            const correctBtn = document.querySelector(`#${section} .option-btn[onclick*="true"]`);
+            if (correctBtn && !correctBtn.classList.contains('correct')) {
+                correctBtn.classList.add('correct');
+            }
+            
+            // Show all steps
+            const steps = document.querySelectorAll(`#${section} .step`);
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    step.style.background = '#fffacd';
+                    setTimeout(() => {
+                        step.style.background = 'white';
+                    }, 1000);
+                }, index * 500);
+            });
+        }
+
+        function nextQuestion(section) {
+            // Reset current question
+            document.querySelectorAll(`#${section} .option-btn`).forEach(btn => {
+                btn.classList.remove('correct', 'wrong');
+                btn.disabled = false;
+            });
+            
+            // Hide hint
+            const hintBox = document.querySelector(`#${section} .hint-box`);
+            if (hintBox) hintBox.classList.remove('show');
+            
+            showFeedback('New question loaded!', 'success');
+        }
+
+        function updateScore(points) {
+            score += points;
+            document.getElementById('score').textContent = score;
+            
+            // Update stars
+            const stars = document.getElementById('stars');
+            const starCount = Math.floor(score / 30);
+            stars.textContent = '⭐'.repeat(Math.min(starCount, 5));
+            
+            // Animation
+            stars.style.animation = 'pulse 0.5s';
+            setTimeout(() => {
+                stars.style.animation = '';
+            }, 500);
+        }
+
+        function updateProgress() {
+            totalQuestions = document.querySelectorAll('.question-card').length;
+            const answeredQuestions = document.querySelectorAll('.option-btn.correct').length;
+            const progress = Math.round((answeredQuestions / totalQuestions) * 100);
+            
+            const progressBar = document.getElementById('progress');
+            progressBar.style.width = progress + '%';
+            progressBar.textContent = progress + '%';
+        }
+
+        function showFeedback(message, type) {
+            const feedback = document.getElementById('feedback');
+            feedback.textContent = message;
+            feedback.className = 'feedback ' + type;
+            
+            setTimeout(() => {
+                feedback.className = 'feedback';
+            }, 3000);
+        }
+
+        function initializeDragAndDrop() {
+            const dragItems = document.querySelectorAll('.drag-item');
+            const dropZone = document.getElementById('pattern-drop');
+            
+            if (!dropZone) return;
+            
+            dragItems.forEach(item => {
+                item.addEventListener('dragstart', function(e) {
+                    e.dataTransfer.setData('text', e.target.textContent);
+                    e.target.style.opacity = '0.5';
+                });
+                
+                item.addEventListener('dragend', function(e) {
+                    e.target.style.opacity = '';
+                });
+            });
+            
+            dropZone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('active');
+            });
+            
+            dropZone.addEventListener('dragleave', function(e) {
+                this.classList.remove('active');
+            });
+            
+            dropZone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('active');
+                
+                const data = e.dataTransfer.getData('text');
+                const span = document.createElement('span');
+                span.className = 'drag-item';
+                span.textContent = data + ' ';
+                
+                if (this.textContent === 'Drop numbers here in order...') {
+                    this.textContent = '';
+                }
+                this.appendChild(span);
+                
+                // Check if pattern is correct
+                const dropped = this.textContent.trim().split(' ');
+                if (dropped.join(' ') === '3 6 9 12 15') {
+                    showFeedback('🎉 Perfect pattern! You did it!', 'success');
+                    updateScore(15);
+                }
+            });
+        }
+
+        function highlightEmbedded() {
+            const rect = document.querySelector('rect[stroke-dasharray]');
+            if (rect) {
+                rect.style.animation = 'pulse 2s';
+                rect.style.opacity = '1';
+                showFeedback('There it is! The square is hidden in the top-left corner!', 'success');
+            }
+        }
+
+        function loadPracticeQuestions() {
+            practiceQuestions = [
+                {
+                    question: "If the day before yesterday was Saturday, then tomorrow will be?",
+                    options: ["Tuesday", "Wednesday", "Thursday", "Monday"],
+                    correct: 0,
+                    explanation: "If day before yesterday was Saturday, yesterday was Sunday, today is Monday, so tomorrow is Tuesday!"
+                },
+                {
+                    question: "Find the missing number: 12, ?, 18, 21, 24",
+                    options: ["14", "15", "16", "17"],
+                    correct: 1,
+                    explanation: "Pattern: Adding 3 each time. 12+3=15, 15+3=18, 18+3=21, 21+3=24"
+                },
+                {
+                    question: "How many groups of 8 birds can be formed from 24 birds?",
+                    options: ["2", "3", "4", "5"],
+                    correct: 1,
+                    explanation: "24 ÷ 8 = 3 groups"
+                },
+                {
+                    question: "Which shape continues the pattern: □ ◇ ○ □ ◇ ?",
+                    options: ["□", "◇", "○", "△"],
+                    correct: 2,
+                    explanation: "Pattern repeats: square, diamond, circle. After diamond comes circle!"
+                },
+                {
+                    question: "If CAT is coded as 3-1-20, how is DOG coded?",
+                    options: ["4-15-7", "4-14-7", "3-15-7", "4-15-8"],
+                    correct: 0,
+                    explanation: "Each letter gets its position number: D=4, O=15, G=7"
+                }
+            ];
+        }
+
+        function loadPracticeQuestion() {
+            if (currentQuestion >= practiceQuestions.length) {
+                showTestResults();
+                return;
+            }
+            
+            const q = practiceQuestions[currentQuestion];
+            const container = document.getElementById('practice-questions');
+            
+            container.innerHTML = `
+                <div class="question-text">
+                    <h3>Question ${currentQuestion + 1} of ${practiceQuestions.length}</h3>
+                    <p>${q.question}</p>
+                </div>
+                <div class="options-container">
+                    ${q.options.map((opt, idx) => `
+                        <button class="option-btn" onclick="checkPracticeAnswer(${idx}, ${q.correct})">
+                            ${opt}
+                        </button>
+                    `).join('')}
+                </div>
+                <div class="hint-box" id="practice-hint" style="display: block; margin-top: 20px;">
+                    <h3>💡 Explanation:</h3>
+                    <p>${q.explanation}</p>
+                </div>
+            `;
+            
+            currentQuestion++;
+        }
+
+        function checkPracticeAnswer(selected, correct) {
+            const buttons = document.querySelectorAll('#practice-questions .option-btn');
+            buttons.forEach(btn => btn.disabled = true);
+            
+            if (selected === correct) {
+                buttons[selected].classList.add('correct');
+                showFeedback('🎉 Correct! Well done!', 'success');
+                updateScore(20);
+            } else {
+                buttons[selected].classList.add('wrong');
+                buttons[correct].classList.add('correct');
+                showFeedback('Not quite right. See the correct answer!', 'error');
+            }
+            
+            setTimeout(() => {
+                loadPracticeQuestion();
+            }, 3000);
+        }
+
+        function showTestResults() {
+            const container = document.getElementById('practice-questions');
+            const percentage = Math.round((score / (practiceQuestions.length * 20)) * 100);
+            
+            let medal = '';
+            let message = '';
+            
+            if (percentage >= 90) {
+                medal = '🥇';
+                message = 'Outstanding! You\'re ready for the Olympiad!';
+            } else if (percentage >= 70) {
+                medal = '🥈';
+                message = 'Great job! Keep practicing!';
+            } else if (percentage >= 50) {
+                medal = '🥉';
+                message = 'Good effort! Review the topics and try again!';
+            } else {
+                medal = '🌟';
+                message = 'Keep learning! Practice makes perfect!';
+            }
+            
+            container.innerHTML = `
+                <div style="text-align: center; padding: 40px;">
+                    <div style="font-size: 5em;">${medal}</div>
+                    <h2>Test Complete!</h2>
+                    <p style="font-size: 1.5em;">Your Score: ${score} points</p>
+                    <p style="font-size: 1.3em;">${percentage}% Correct</p>
+                    <p style="font-size: 1.2em; color: #666; margin-top: 20px;">${message}</p>
+                </div>
+            `;
+            
+            document.getElementById('performance-summary').innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; text-align: center;">
+                    <div>
+                        <h4>Questions Attempted</h4>
+                        <p style="font-size: 2em; color: #4caf50;">${practiceQuestions.length}</p>
+                    </div>
+                    <div>
+                        <h4>Total Score</h4>
+                        <p style="font-size: 2em; color: #2196f3;">${score}</p>
+                    </div>
+                    <div>
+                        <h4>Accuracy</h4>
+                        <p style="font-size: 2em; color: #ff9800;">${percentage}%</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function resetProgress() {
+            score = 0;
+            currentQuestion = 0;
+            document.getElementById('score').textContent = '0';
+            document.getElementById('stars').textContent = '⭐';
+            document.getElementById('progress').style.width = '0%';
+            document.getElementById('progress').textContent = '0%';
+            
+            // Reset all answers
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.classList.remove('correct', 'wrong');
+                btn.disabled = false;
+            });
+            
+            // Reset practice test
+            document.getElementById('practice-questions').innerHTML = '';
+            document.getElementById('performance-summary').innerHTML = '<p>Complete the practice test to see your results!</p>';
+            
+            showFeedback('Progress reset! Start fresh!', 'success');
+        }
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                // Previous section
+                const activeBtn = document.querySelector('.menu-btn.active');
+                const prevBtn = activeBtn.previousElementSibling;
+                if (prevBtn) prevBtn.click();
+            } else if (e.key === 'ArrowRight') {
+                // Next section
+                const activeBtn = document.querySelector('.menu-btn.active');
+                const nextBtn = activeBtn.nextElementSibling;
+                if (nextBtn) nextBtn.click();
+            }
+        });
+
+        // Add celebration animation when score reaches milestones
+        let lastMilestone = 0;
+        function checkMilestone() {
+            const milestones = [50, 100, 150, 200, 250, 300];
+            const currentMilestone = milestones.find(m => score >= m && m > lastMilestone);
+            
+            if (currentMilestone) {
+                lastMilestone = currentMilestone;
+                celebrate();
+            }
+        }
+
+        function celebrate() {
+            // Create confetti effect
+            const colors = ['#ff6b6b', '#4ecdc4', '#ffe66d', '#95e77e', '#a8dadc'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.borderRadius = '50%';
+                confetti.style.zIndex = '10000';
+                document.body.appendChild(confetti);
+                
+                // Animate confetti
+                confetti.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 720}deg)`, opacity: 0 }
+                ], {
+                    duration: 3000 + Math.random() * 2000,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                }).onfinish = () => confetti.remove();
+            }
+            
+            showFeedback('🎊 Milestone reached! Amazing progress!', 'success');
+        }
+
+        // Update score with milestone check
+        const originalUpdateScore = updateScore;
+        updateScore = function(points) {
+            originalUpdateScore(points);
+            checkMilestone();
+        };
+    </script>
+</body>
+</html>
